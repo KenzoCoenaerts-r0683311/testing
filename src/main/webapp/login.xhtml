@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/basicTemplate.xhtml">
+	<ui:define name="content">
+
+		<h:form id="loginForm">
+			<div class="row">
+				<p>
+					<h:messages globalOnly="true" id="loginErrors" class="alert-danger" />
+				</p>
+				<div>
+					<fieldset>
+						<div class="form-group">
+							<label for="personId" class="col-md-3 control-label">#{msgs['label.personid']}</label>
+							<div class="col-md-7">
+								<h:inputText id="personId" value="#{loginBean.personId}" />
+								<h:message for="personId" id="errorPersonId"
+									class="alert-danger" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="col-md-3 control-label">#{msgs['label.password']}</label>
+							<div class="col-md-7">
+								<h:inputText id="password" value="#{loginBean.password}" />
+								<h:message for="password" id="errorPassword"
+									class="alert-danger" />
+							</div>
+						</div>
+					</fieldset>
+
+					<div class="form-group">
+						<div class="col-md-offset-3 col-sm-10">
+							<h:commandButton id="login"
+								action="#{loginBean.login}"
+								value="#{msgs['label.login']}" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>
