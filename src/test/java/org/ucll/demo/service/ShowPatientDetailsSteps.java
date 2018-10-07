@@ -5,6 +5,7 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Test;
 import org.ucll.demo.domain.Gender;
 
 import org.ucll.demo.service.api.java.PersonServiceJavaApi;
@@ -58,6 +59,11 @@ public class ShowPatientDetailsSteps {
     public void i_ask_for_the_details_of_the_patient_using_his_social_security_number() throws Throwable {
         //write code here that turns the phrase above into concrete actions
         throw new PendingException();
+    }
+
+    @Given("^a patient that is not registered$")
+    public void a_patient_that_is_not_registered() {
+        api.getPerson("t");
     }
 
     @Then("^the personal details social security number, gender and bithdate are given$")
