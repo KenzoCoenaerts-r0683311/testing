@@ -9,4 +9,5 @@ import org.junit.runner.RunWith;
         features={"src/test/resources/org/ucll/demo/service/ShowPatientDetails.feature"},
                 plugin={"html:target/cucumber", "json:target/cucumber.json"}
 )
+
 public class ShowPatientDetailsTest { }
