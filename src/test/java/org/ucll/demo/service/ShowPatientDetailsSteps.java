@@ -18,8 +18,6 @@ import static com.thoughtworks.selenium.SeleneseTestBase.assertNotEquals;
 import static com.thoughtworks.selenium.SeleneseTestNgHelper.assertEquals;
 
 public class ShowPatientDetailsSteps {
-    public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
-
     private String socialSecurityNumber;
     private Gender gender;
     private Date birthDate;
@@ -34,6 +32,8 @@ public class ShowPatientDetailsSteps {
 
     private boolean error;
     private String message;
+
+    private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
 
     @After
     public void teardown() {
