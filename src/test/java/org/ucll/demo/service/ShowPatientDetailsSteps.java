@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static com.thoughtworks.selenium.SeleneseTestBase.assertNotEquals;
-import static com.thoughtworks.selenium.SeleneseTestNgHelper.assertEquals;
+//import static org.junit.Assert.assertEquals;
 
 public class ShowPatientDetailsSteps {
     private String socialSecurityNumber;
@@ -37,11 +37,10 @@ public class ShowPatientDetailsSteps {
 
     @After
     public void teardown() {
-        if (!error) {
+        if (!error)
             personApi.deletePerson(patient.getSocialSecurityNumber());
-        }
 
-        message = "";
+        message = null;
         error = false;
     }
 
@@ -63,7 +62,7 @@ public class ShowPatientDetailsSteps {
 
     @Given("^a patient that is registered with a length (\\d+) cm and weight (\\d+) gr$")
     public void a_patient_that_is_registered_with_a_length_cm_and_weight_gr(int length, int weight) throws Throwable {
-        patient = new PersonDetail("93051822361", gender.MALE, DATE_FORMATTER.parse("1993-05-18"));
+        patient = new PersonDetail("93051822361", Gender.MALE, DATE_FORMATTER.parse("1993-05-18"));
         date = DATE_FORMATTER.parse("2000-04-10");
         this.examinationDetail = new ExaminationDetail(length, weight, this.date);
         patient.setExaminationDetail(this.examinationDetail);
@@ -120,35 +119,35 @@ public class ShowPatientDetailsSteps {
 
     @Then("^the personal details social security number, gender and birthdate are given$")
     public void the_personal_details_social_security_number_gender_and_birthdate_are_given() throws Throwable {
-        assertEquals(socialSecurityNumber, patient.getSocialSecurityNumber());
-        assertEquals(gender, patient.getGender());
-        assertEquals(birthDate, patient.getBirthdate());
+        Assert.assertEquals(socialSecurityNumber, patient.getSocialSecurityNumber());
+        Assert.assertEquals(gender, patient.getGender());
+        Assert.assertEquals(birthDate, patient.getBirthdate());
     }
 
     @Then("^the examination details length, weight and last examination date are given$")
     public void the_examination_details_length_weight_and_last_examination_date_are_given() throws Throwable {
         examinationDetail = patient.getExaminationDetail();
-        assertEquals(length, examinationDetail.getLength());
-        assertEquals(weight, examinationDetail.getWeight());
-        assertEquals(date, examinationDetail.getExaminationDate());
+        Assert.assertEquals(length, examinationDetail.getLength());
+        Assert.assertEquals(weight, examinationDetail.getWeight());
+        Assert.assertEquals(date, examinationDetail.getExaminationDate());
     }
 
     @Then("^the length (\\d+), weight (\\d+), and date of the examination \"([^\"]*)\" are given$")
     public void the_length_weight_and_date_of_the_examination_are_given(int length, int weight, @Format("yyyy-MM-dd") Date examinationDate) throws Throwable {
         examinationDetail = patient.getExaminationDetail();
-        assertEquals(length, examinationDetail.getLength());
-        assertEquals(weight, examinationDetail.getWeight());
-        assertEquals(examinationDate, examinationDetail.getExaminationDate());
+        Assert.assertEquals(length, examinationDetail.getLength());
+        Assert.assertEquals(weight, examinationDetail.getWeight());
+        Assert.assertEquals(examinationDate, examinationDetail.getExaminationDate());
     }
 
     @Then("^the calculated bmi \"([^\"]*)\" is given$")
     public void the_calculated_bmi_is_given(double bmi) throws Throwable {
-        assertEquals(bmi, patient.getBmi());
+        Assert.assertEquals(bmi, patient.getBmi(), 0.0);
     }
 
     @Then("^the calculated bmi \"([^\"]*)\" is based on these data$")
     public void the_calculated_bmi_is_based_on_these_data(double bmi) throws Throwable {
-        assertEquals(bmi, patient.getBmi());
+        Assert.assertEquals(bmi, patient.getBmi(), 0.0);
     }
 
     @Then("^an error message is given$")
@@ -158,12 +157,11 @@ public class ShowPatientDetailsSteps {
 
     @Then("^no details are given$")
     public void no_details_are_given() throws Throwable {
-        assertEquals(error, true);
+        Assert.assertEquals(error, true);
     }
 
     @Then("^the bmi (\\d+)\\.(\\d+) is given rounded to two digits$")
     public void the_bmi_is_given_rounded_to_two_digits(int arg1, int arg2) throws Throwable {
-        Assert.assertEquals(Double.parseDouble("" + arg1 + "." + arg2 + ""), patient.getBmi(), 2);
+        Assert.assertEquals(Double.parseDouble("" + arg1 + "." + arg2 + ""), patient.getBmi(), 0.0);
     }
-
 }
