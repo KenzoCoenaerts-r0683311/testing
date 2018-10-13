@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features={"src/test/resources/org/ucll/demo/service/ShowPatientDetails.feature"},
+        features={"src/test/resources/org/ucll/demo/service/ListPatients.feature"},
         plugin={"html:target/cucumber", "json:target/cucumber.json"}
 )
-
-public class ShowPatientDetailsTest { }
+public class ListPatiensTest {
+}

@@ -41,3 +41,5 @@ Feature: Show patient details
       |180	   |75000	|23.15	|
       |180	   |75009	|23.15	|
 
+
+
