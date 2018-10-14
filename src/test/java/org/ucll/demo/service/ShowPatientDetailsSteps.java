@@ -49,7 +49,7 @@ public class ShowPatientDetailsSteps {
         this.socialSecurityNumber = socialSecurityNumber;
         this.gender = Gender.valueOf(gender.toUpperCase());
         this.birthDate = birthDate;
-        patient = new PersonDetail(this.socialSecurityNumber, this.gender, this.birthDate);
+        patient = new PersonDetail(socialSecurityNumber, Gender.valueOf(gender.toUpperCase()), birthDate);
     }
 
     @Given("^a patient with the social security number \"([^\"]*)\"$")
