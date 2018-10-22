@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static com.thoughtworks.selenium.SeleneseTestBase.assertNotEquals;
-//import static org.junit.Assert.assertEquals;
 
 public class ShowPatientDetailsSteps {
     private String socialSecurityNumber;

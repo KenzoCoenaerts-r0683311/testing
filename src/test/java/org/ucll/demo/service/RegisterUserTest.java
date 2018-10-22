@@ -10,4 +10,5 @@ import org.junit.runner.RunWith;
         plugin={"html:target/cucumber", "json:target/cucumber.json"}
 )
 public class RegisterUserTest {
+
 }
