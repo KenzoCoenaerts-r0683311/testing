@@ -1,3 +1,4 @@
+@showpatientdetail
 Feature: Show patient details
 
   In order to check the physical condition of a patient

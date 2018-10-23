@@ -34,7 +34,7 @@ public class ShowPatientDetailsSteps {
 
     private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
 
-    @After
+    @After("@showpatientdetail")
     public void teardown() {
         if (!error)
             personApi.deletePerson(patient.getSocialSecurityNumber());
