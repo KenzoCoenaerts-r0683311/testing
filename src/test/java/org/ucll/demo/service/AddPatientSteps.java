@@ -19,7 +19,7 @@ public class AddPatientSteps {
     private PersonDetail p2;
     private PersonServiceJavaApi api = new PersonServiceJavaApi();
 
-    boolean error = false;
+    private boolean error = false;
 
     @After
     public void teardown(){ }

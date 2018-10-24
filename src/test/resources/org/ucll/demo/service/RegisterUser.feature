@@ -5,5 +5,6 @@ Feature: Register User
 
   Scenario:
     Given a user with userid "1", first name: "test", last name: "rest", e-mail: "test.rest@gmail.com" and password "t"
+    And the user is registerd
     When I ask for the info about the user using his userid
     Then I get the first name "test", last name "rest" and e-mail "test.rest@gmail.com"
