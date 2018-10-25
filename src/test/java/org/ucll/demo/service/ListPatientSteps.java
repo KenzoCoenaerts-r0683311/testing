@@ -40,8 +40,7 @@ public class ListPatientSteps {
 
     @Given("^both patients are registered$")
     public void both_patients_are_registered() throws Throwable {
-        for(PersonDetail personDetail: personDetails)
-            personApi.addPerson(personDetail);
+        personDetails.forEach(personDetail -> personApi.addPerson(personDetail) );
     }
 
     @When("^I ask to see a list of all my patients$")

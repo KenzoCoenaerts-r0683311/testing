@@ -7,6 +7,7 @@ Feature: Add patient
   Scenario Outline: successfully adding a patient
     Given a patient with the social security number: "<number>", birth date: "<date>" and gender: "<gender>" is giving
     And length: "<length>", weight: "<weight>" and "<date>"
+
     When i try to add the patient
     And  I ask for information about the patient using his social security number "<number>"
 
