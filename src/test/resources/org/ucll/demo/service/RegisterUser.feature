@@ -31,6 +31,7 @@ Feature: Register User
         | 3  | test      | ""       | test.wow@gmail.com  | t        |
         | 4  | test      | wow      | testl.com           | t        |
         | 5  | test      | wow      | test.wow@gmail.com  | ""       |
+        | 6  | test      | wow      | ""                  | t        |
 
 
 
