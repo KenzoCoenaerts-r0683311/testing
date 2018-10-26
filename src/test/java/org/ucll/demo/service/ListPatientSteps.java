@@ -22,7 +22,7 @@ public class ListPatientSteps {
     private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
     private int counter = 0;
 
-    private List<PersonOverview> overview;
+    private List<PersonOverview> overview = new ArrayList<>();
     private List<PersonDetail> personDetails = new ArrayList<>();
 
     @After
@@ -38,20 +38,20 @@ public class ListPatientSteps {
         personDetails.add(patient);
     }
 
-    @Given("^both patients are registered$")
+    @Given("^all patients are registered$")
     public void both_patients_are_registered() throws Throwable {
         personDetails.forEach(personDetail -> personApi.addPerson(personDetail) );
     }
 
-    @When("^I ask to see a list of all my patients$")
-    public void i_ask_to_see_a_list_of_all_my_patients() throws Throwable {
-        this.overview = personApi.getPersons();
+    @When("^patienet with social security number \"([^\"]*)\" gets removed$")
+    public void patinet_with_social_security_number_gets_removed(String arg1) throws Throwable {
+        personApi.deletePerson(arg1);
     }
 
-    @When("^patinet with social security number \"([^\"]*)\" gets removed$")
-    public void patinet_with_social_security_number_gets_removed(String arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        personApi.deletePerson(arg1);
+    @When("^I ask to see a list of all my patients$")
+    public void i_ask_to_see_a_list_of_all_my_patients() throws Throwable {
+        System.out.print(personApi.getPersons());
+        this.overview = personApi.getPersons();
     }
 
     @Then("^a patient with the social security number \"([^\"]*)\" is given$")

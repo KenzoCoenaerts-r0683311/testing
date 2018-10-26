@@ -1,5 +1,6 @@
 package org.ucll.demo.service;
 
+import cucumber.api.DataTable;
 import cucumber.api.Format;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
@@ -13,6 +14,8 @@ import org.ucll.demo.service.api.java.to.PersonDetail;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import static com.thoughtworks.selenium.SeleneseTestBase.assertNotEquals;
 
@@ -43,13 +46,23 @@ public class ShowPatientDetailsSteps {
         error = false;
     }
 
-    @Given("^a patient with the social security number \"([^\"]*)\", gender \"([^\"]*)\" and birthdate \"([^\"]*)\"$")
+    @Given("^a patient with the social security number, gender and birthdate$")
+    public void a_patient_with_the_social_security_number_gender_and_birthdate(DataTable dt) throws Throwable {
+        List<Map<String, String>> list = dt.asMaps(String.class, String.class);
+        Map<String, String> data = list.get(0);
+        this.socialSecurityNumber = data.get("number");
+        this.gender = Gender.valueOf(data.get("gender").toUpperCase());
+        this.birthDate = DATE_FORMATTER.parse(data.get("birthdate"));
+        patient = new PersonDetail(socialSecurityNumber, this.gender, birthDate);
+    }
+
+   /* @Given("^a patient with the social security number \"([^\"]*)\", gender \"([^\"]*)\" and birthdate \"([^\"]*)\"$")
     public void a_patient_with_the_social_security_number_gender_and_birthdate(String socialSecurityNumber, String gender, @Format("yyyy-MM-dd") Date birthDate) throws Throwable {
         this.socialSecurityNumber = socialSecurityNumber;
         this.gender = Gender.valueOf(gender.toUpperCase());
         this.birthDate = birthDate;
         patient = new PersonDetail(socialSecurityNumber, Gender.valueOf(gender.toUpperCase()), birthDate);
-    }
+    }*/
 
     @Given("^a patient with the social security number \"([^\"]*)\"$")
     public void a_patient_with_the_social_security_number(String socialSecurityNumber) throws Throwable {
