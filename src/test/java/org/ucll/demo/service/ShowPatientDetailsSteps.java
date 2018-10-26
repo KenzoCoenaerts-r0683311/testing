@@ -46,12 +46,12 @@ public class ShowPatientDetailsSteps {
         error = false;
     }
 
-    @Given("^a patient with the social security number, gender and birthdate$")
+    @Given("^a patient with the social security number, gender male and birthdate$")
     public void a_patient_with_the_social_security_number_gender_and_birthdate(DataTable dt) throws Throwable {
         List<Map<String, String>> list = dt.asMaps(String.class, String.class);
         Map<String, String> data = list.get(0);
         this.socialSecurityNumber = data.get("number");
-        this.gender = Gender.valueOf(data.get("gender").toUpperCase());
+        this.gender = Gender.MALE;
         this.birthDate = DATE_FORMATTER.parse(data.get("birthdate"));
         patient = new PersonDetail(socialSecurityNumber, this.gender, birthDate);
     }

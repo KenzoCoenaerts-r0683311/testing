@@ -16,7 +16,6 @@ import java.util.Date;
 
 public class AddPatientSteps {
     private PersonDetail patient;
-    private PersonDetail p2;
     private PersonServiceJavaApi api = new PersonServiceJavaApi();
 
     private boolean error = false;
@@ -53,6 +52,6 @@ public class AddPatientSteps {
 
     @When("^I ask for information about the patient using his social security number \"([^\"]*)\"$")
     public void i_ask_for_information_about_the_patient_using_his_social_security_number(String number) throws Throwable {
-        p2 = api.getPerson(number);
+        api.getPerson(number);
     }
 }
