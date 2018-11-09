@@ -16,6 +16,7 @@ import java.util.Date;
 
 public class AddPatientSteps {
     private PersonDetail patient;
+    private PersonDetail p2;
     private PersonServiceJavaApi api = new PersonServiceJavaApi();
 
     private boolean error = false;
@@ -30,8 +31,12 @@ public class AddPatientSteps {
 
     @Given("^length: \"([^\"]*)\", weight: \"([^\"]*)\" and \"([^\"]*)\"$")
     public void length_weight_and(String length, String weight, @Format("yyyy-MM-dd") Date birthDate) throws Throwable {
-        ExaminationDetail examination = new ExaminationDetail(Integer.parseInt(length), Integer.parseInt(weight), birthDate);
-        patient.setExaminationDetail(examination);
+        try {
+            ExaminationDetail examination = new ExaminationDetail(Integer.parseInt(length), Integer.parseInt(weight), birthDate);
+            patient.setExaminationDetail(examination);
+        } catch(Exception e){
+            error = true;
+        }
 
     }
 
@@ -49,9 +54,16 @@ public class AddPatientSteps {
         Assert.assertTrue(error);
     }
 
+    @When("^i ask for the patient using his social security number: \"([^\"]*)\"$")
+    public void i_ask_for_the_patient_using_his_social_security_number(String number) throws Throwable {
+       p2 = api.getPerson(number);
+    }
 
-    @When("^I ask for information about the patient using his social security number \"([^\"]*)\"$")
-    public void i_ask_for_information_about_the_patient_using_his_social_security_number(String number) throws Throwable {
-        api.getPerson(number);
+    @Then("^the number, date, length and weight are giving of the that patient$")
+    public void the_number_date_length_and_weight_are_giving_of_the_that_patient() throws Throwable {
+        Assert.assertEquals(patient.getSocialSecurityNumber(), p2.getSocialSecurityNumber());
+        Assert.assertEquals(patient.getBirthdate(), p2.getBirthdate());
+        Assert.assertEquals(patient.getExaminationDetail().getLength(), p2.getExaminationDetail().getLength());
+        Assert.assertEquals(patient.getExaminationDetail().getWeight(), p2.getExaminationDetail().getWeight());
     }
 }

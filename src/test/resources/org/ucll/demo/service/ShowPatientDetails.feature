@@ -7,7 +7,7 @@ Feature: Show patient details
 
   Scenario: the personal details of a registered patient are given
     Given a patient with the social security number, gender male and birthdate
-      | number        | birthdate    |
+      | number        | birthdate  |
       | "93051822361" | 1993-05-18 |
     And on "2000-04-10" the patient had a length of 180 cm and a weight of 75000 gr
     And the patient is registered

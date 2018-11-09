@@ -8,7 +8,8 @@ Feature: Add patient
     Given a patient with the social security number: "<number>", birth date: "<date>" and gender: "<gender>" is giving
     And length: "<length>", weight: "<weight>" and "<date>"
     When i try to add the patient
-    And  I ask for information about the patient using his social security number "<number>"
+    And i ask for the patient using his social security number: "<number>"
+    Then the number, date, length and weight are giving of the that patient
 
     Examples:
       | number | date       | gender | length | weight |
@@ -19,7 +20,6 @@ Feature: Add patient
       | 5      | 2010-10-02 | m      | 175    | 20123  |
       | 6      | 1995-08-02 | f      | 68     | 500    |
       | 7      | 1995-08-02 | f      | 50     | 300    |
-      | 7      | 1995-08-02 | f      | 300    | 700000 |
 
   Scenario Outline: An error is thrown When no or wrong data is giving
     Given a patient with the social security number: "<number>", birth date: "<date>" and gender: "<gender>" is giving
@@ -45,10 +45,11 @@ Feature: Add patient
       | 11     | 1995-08-02 | m      | -3     | 700001  |
       | 12     | 1995-08-02 | f      | 50     | -300    |
       | 13     | 1995-08-02 | f      | 300    | -700000 |
-      | ""     | 2010-09-02 | m      | 200    | 300    |
-      | 14     | ""         | f      | 250    | 30000  |
-      | 15     | 2010-08-03 | m      | ""     | 30000  |
-      | 16     | 2000-08-02 | trans  | 200    | ""    |
+      #empty field
+      |        | 2010-09-02 | m      | 200    | 300     |
+      | 14     |            | f      | 250    | 30000   |
+      | 15     | 2010-08-03 | m      |        | 30000   |
+      | 16     | 2000-08-02 | trans  | 200    |         |
 
 
 

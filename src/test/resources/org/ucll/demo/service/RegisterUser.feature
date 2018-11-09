@@ -5,23 +5,20 @@ Feature: Register User
 
   Scenario Outline: successfully register
     Given a user with userid "<id>", first name: "<firstName>", last name: "<lastName>", e-mail: "<e-mail>" and password "<password>"
-    And the user is registerd
-    When I ask for the info about the user using his userid
-    Then I get the first name "test", last name "rest" and e-mail "test.rest@gmail.com"
+    When the user is registerd
+    And I ask for the info about the user using his userid
+    Then I get the first name "<firstName>", last name "<lastName>"" and e-mail "<e-mail>"
 
     Examples:
 
     | id | firstName | lastName | e-mail              | password |
     | 1  | test      | wow      | test.wow@gmail.com  | t        |
-    | 2  | test      | wow      | test.wow@gmail.com  | t        |
-    | 3  | test      | wow      | test.wow@gmail.com  | t        |
-    | 4  | test      | wow      | test.wow@gmail.com  | t        |
-    | 5  | test      | wow      | test.wow@gmail.com  | t        |
-    | 6  | test      | wow      | test.wow@gmail.com  | t        |
+    | 2  | rest      | row      | rest.row@gmail.com  | pass     |
+    | 3  | west      | col      | west.col@gmail.com  | test123  |
 
   Scenario Outline:  An error is thrown When no or wrong data is giving
     Given a user with userid "<id>", first name: "<firstName>", last name: "<lastName>", e-mail: "<e-mail>" and password "<password>"
-    And the user is registerd
+    When the user is registerd
     Then an error is thrown
 
     Examples:
